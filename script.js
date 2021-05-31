@@ -27,7 +27,10 @@ function divide(x, y){
         alert('Error');
     }
     result = x / y;
-    return result.toFixed(4);
+    if (result % 1 == 0){
+        return result;
+    }
+    else return result.toFixed(4);
 }
 
 const operations = {'+': add, '-': subtract, '÷': divide, '×': multiply,};
@@ -50,20 +53,20 @@ function clickButton(e){
     else if(text.toLowerCase() === 'delete') displayText = displayText.slice(0, displayText.length - 1);
     
     else if(text === '+' || text === '-' || text === '÷' || text === '×'){
-        operator = text;
         if(flag !== 1){
             
         
             flag = 1;
             if(typeof(operanda) === 'number'){
                 operandb = Number(displayText);
-                operanda = operate(operations[text], operanda, operandb);
+                operanda = operate(operations[operator], operanda, operandb);
                 displayText = `${operanda}`;
                 operandb = undefined;
             }
             else {
                 operanda = Number(displayText)
             }
+            operator = text;
     }
     }
 
